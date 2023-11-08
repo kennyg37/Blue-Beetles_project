@@ -38,10 +38,26 @@ elif menu == 'Data':
     else:
         st.write(f'Displaying data from: {selected_sheet_name}. Summary labour force indicators, RLFS 2022')
         st.write(selected_data.head(10))
-        st.title('Data summary')
-        bar1 = px.bar(selected_data, x='Labour force indicators', y='Total', color='Male',  title='Summary labour force indicators, RLFS 2022')
-        st.plotly_chart(bar1, use_container_width=True)
+        st.title('Data Vizualization')
 
+        selected_row = 3
+        males_data = selected_data.iloc[selected_row, 2]
+        females_data = selected_data.iloc[selected_row, 3]
+
+        labels = ['Males', 'Females']
+        values = [males_data, females_data]
+        
+        pie1 = px.pie(selected_data, values=values, names=labels, title='Employment rate Females vs Males')
+        st.plotly_chart(pie1, use_container_width=True)
+
+        rural_data = selected_data.iloc[selected_row, 5]
+        urban_data = selected_data.iloc[selected_row, 4]
+        custom_colors = ['grey', 'black']
+
+        pie2 = px.pie(selected_data, values=[rural_data, urban_data], names=['Rural', 'Urban'], title='Employment rate Rural vs Urban', color_discrete_sequence=custom_colors)
+        st.plotly_chart(pie2, use_container_width=True)
+
+        
 #The about page displays the information about the dashboard and the data used  giving credit to all the involved parties
 
 elif menu == 'About':
