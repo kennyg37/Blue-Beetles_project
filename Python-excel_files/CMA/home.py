@@ -4,4 +4,4 @@ import pandas as pd
 import plotly.express as px
 
 def home():
-    pass
+    print('Welcome to the NISR LFS Dashboard')

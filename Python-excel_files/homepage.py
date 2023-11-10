@@ -17,6 +17,7 @@ selected_data= selected_data.drop_duplicates()
 selected_data= selected_data.reset_index(drop=True)
 
 
+
 menu = st.sidebar.selectbox('Menu', ['Home', 'Data', 'About'])
 
 #We create a sidebar to display the menu options to ease access to all parts of the dashboard
@@ -24,15 +25,24 @@ menu = st.sidebar.selectbox('Menu', ['Home', 'Data', 'About'])
 if menu == 'Home':
     st.title('Welcome to the NISR LFS Dashboard')
     st.write("<p style= 'font-style: italic;'>This dashboard showcases the 2022 Laborforce Survey carried out by Nisr</p>", unsafe_allow_html=True)
-    st.write('You can find the summary on the data menu or more details following the link below')
+    st.write('You can find the data and visual summary on the data menu or more details following the link/page below')
     st.markdown('[Detailed data](details)')
+    st.title('Executive Summary')
+    executive_summary = """Rwanda redesigned LFS from bi-annual to quarterly basis since February 2019 to provide estimates of labour market indicators and monitor labour market trends on a quarterly basis.
+The data collection on the size and characteristics of the labour force, employment, unemployment and other labour market characteristics of the population was carried out through four quarters of 2022, specifically in February, May, August and November. The survey was also designed to measure different forms of work, in particular, own-use production work and other components of labour underutilization including time-related underemployment and potential labour force in line with the international standards, adopted by the 19th International Conference of Labour Statisticians (ICLS) in 2013. All the key concepts used henceforth in this report (employment, unemployment, time related underemployment, labour underutilization, potential labour force, discouraged job seekers etc) are defined in annexe A of this report. The current report presents the results of the annual report of 2022 LFS obtained by combining all quarters of LFS in 2022 (February, May, August and November ).
+The survey covered all persons living in private households, excluding the institutional population permanently residing in places such as hostels, health resorts, correctional establishments etc., as well as persons living at their work-sites and in seasonal dwellings. The resulting estimates of the main labour force indicators at the national level from the combined datasets have standard errors of about 0.5 percent.
+ You can find the full report [here](https://www.nisr.gov.rw/fileadmin/user_upload/LFS_2022_Annual_Report.pdf)"""
+    st.write(executive_summary)
 
 #The data menu displays the data summary and the charts of the basic data in 
 # contrast to the data page which displays the detailed data 
 
 elif menu == 'Data':
     st.title('Data Summary')
-
+    st.write('<p style = "font-weight: bold; font-style: italic;", >Note: This dashboard is a prototype, some data may appear manipulated incorrectly. However after pending approval everything will look as it should</p>', unsafe_allow_html=True)
+    summary_paragraph = """According to the survey results, the working age population (16 years and above) was 7,963,586 of which 4,463,296 persons (56.0 percent) were in the labour force, while 3,500,290 were outside the labour force. For those in the labour force, 3,546,352 were employed, while 916,944 were unemployed. Among those outside the labour force, 1,310,734 persons were engaged wholly or mostly in subsistence foodstuff production (not classified as employment according to the 2013 international standards on statistics of work, employment and labour underutilization).
+The annual unemployment rate stood at 20.5 percent, indicating that roughly for five persons in the labour force there was one person unemployed. The unemployment rate was higher among females (23.7 percent) than among males (17.9 percent) and higher among youth (25.6) than among adults (17.1 percent). It was relatively the same in the urban and rural areas (20.4 and 20.6 percent respectively)."""
+    st.write(summary_paragraph)
     if selected_data.empty:
         st.write('No data available.')
     else:
@@ -71,7 +81,6 @@ elif menu == 'About':
     """
     st.write(paragraph1)
     st.title('Blue Beatles')
-    st.image()
     paragraph2 = """ Blue Beatles is a team of two aspiring programmers Ken Ganza and Tuyishime Johnson.
     Both Ken and Johnson are students at the African Leadership University pursuing a degree in Software Engineering and they share
     the love of programming and data science. In collaboration with NISR they designed this dashboard to help the public access the data"""
@@ -83,3 +92,47 @@ else:
     st.write('Please check back later')
 
 
+#adding some css to style the dashboard
+
+st.markdown( 
+    """
+    <style>
+    body {
+        background-color: #16213e; 
+        color: #ffffff; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 2.5rem; 
+        text-align: center;
+        margin-top: 2rem;
+        color: #64a6bd;
+    }
+
+    p {
+        font-size: 1.2rem; 
+        font-family: 'Tahoma', sans-serif;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+
+    .plotly-graph-div, .plot-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Add more styles as needed */
+
+    @media (max-width: 768px) {
+        
+        h1 {
+            font-size: 2rem; /* Adjust font size for smaller screens */
+        }
+    }
+</style>
+
+""", unsafe_allow_html=True)

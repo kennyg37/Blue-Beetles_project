@@ -84,7 +84,7 @@ while True:
 
         selection = show_terminal_menu(options_list, "Main Menu")
 
-        main_menu_options[selection].__call__()
+        main_menu_options[options_list[selection]]()
 
         print("")
         print("")
