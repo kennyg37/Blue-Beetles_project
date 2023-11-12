@@ -44,6 +44,7 @@ if excel_file is not None:
     elif selected_option == 'Chart':
         selected_chart = st.selectbox("Select a chart:", list(all_sheets.keys()), key='charts')
         selected_chart_data = all_sheets[selected_chart]
+        selected_chart_data.rename(columns={'Unnamed: 0': 'Indicator'}, inplace=True)
         if selected_chart == 'List Of Tables':
             selected_chart_data = selected_chart_data.fillna('')
             selected_chart_data= selected_chart_data.drop_duplicates()
