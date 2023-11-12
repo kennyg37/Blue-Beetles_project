@@ -35,7 +35,6 @@ The dashboard has two menus, the home menu which displays the summary and the De
 
 exit_message = "01100010 01111001 01100101 which is binary for 'bye'..."
 
-
 flags = {
     'exit_program': False
 }
@@ -46,21 +45,30 @@ def show_terminal_menu(options = [], menu_title = ""):
     terminal_menu = TerminalMenu(centered_options, menu_cursor="", title=menu_title)
     terminal_menu_selection_index = terminal_menu.show()
 
-    return terminal_menu_selection_index
+    # Get the selected option by name
+    # Using names is more readable and generally safer than indexes
+    return options[terminal_menu_selection_index]
+
+
+# Clears screen
 def clear_screen():
     if os_name == "posix":
+        # Use clear command on Linux, Mac OS, BSD
         system("clear")
     else:
+        # Else the system is Windows
         system("cls")
-    
 
+
+# Tells the program to exit
 def trigger_exit():
     flags['exit_program'] = True
 
 
+# Loop to render screen
 while True:
     try:
-        
+        # Checks if the program should exit
         if flags['exit_program']:
             clear_screen()
             print(exit_message)
@@ -69,37 +77,43 @@ while True:
 
         clear_screen()
 
+        # Print welcome screen and version
         print(welcome_screen)
         print(version)
-
-        main_menu_options = {
+    
+        # Options
+        options = {
             "Home" : home,
             "Data" : data,
             "About": about,
             "Exit": trigger_exit
         }
+    
+        # Creating a list of all available options
+        options_list = list(options.keys())
 
-        options_list = list(main_menu_options.keys())
-
-
+        # Showing the terminal menu
+        # The function will return the user's selection
         selection = show_terminal_menu(options_list, "Main Menu")
 
-        main_menu_options[options_list[selection]]()
+        # Calling the function for the option the user picked
+        options[selection].__call__()
+    
 
+        # Create an exit menu
         print("")
         print("")
         print("")
         exit_options = ["Back to Main Menu", "Exit"]
-
+    
         selection = show_terminal_menu(exit_options, "Exit Options")
 
         if selection == "Exit":
             trigger_exit()
-
         else:
+            # The user opted to return to the main menu
+            # We make sure that they do not exit
             flags['exit_program'] = False
-    
     except:
-        print("An error occured while running the program.")
+        print("Something went wrong. Please try again...")
         sleep(1.5)
-
