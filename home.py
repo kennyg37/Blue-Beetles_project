@@ -2,11 +2,10 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
 def home():
     excel_file = 'excel_data.xlsx'
     selected_sheet_name = 'Table 1'
-
+    
     if excel_file is not None:
         all_sheets = pd.read_excel(excel_file, sheet_name=None, skiprows=[0])
         selected_data = all_sheets[selected_sheet_name]
@@ -14,7 +13,7 @@ def home():
         selected_data = selected_data.drop_duplicates()
         selected_data = selected_data.reset_index(drop=True)
         selected_data.rename(columns={'Unnamed: 0': 'Indicator'}, inplace=True)
-
+        
         if selected_data.empty:
             print('No data available.')
         else:
@@ -25,14 +24,11 @@ The annual unemployment rate stood at 20.5 percent, indicating that roughly for 
 
             print('\n {}'.format(second_summary))
 
-            print(
-                f'Displaying data from: {selected_sheet_name}. Summary labour force indicators, RLFS 2022')
-
+            print(f'Displaying data from: {selected_sheet_name}. Summary labour force indicators, RLFS 2022')
+            
             selected_row = 3
-            males_data = selected_data.loc[selected_data['Category']
-                                           == 'Males', 'Value'].values[0]
-            females_data = selected_data.loc[selected_data['Category']
-                                             == 'Females', 'Value'].values[0]
+            males_data = selected_data.loc[selected_data['Category'] == 'Males', 'Value'].values[0]
+            females_data = selected_data.loc[selected_data['Category'] == 'Females', 'Value'].values[0]
 
             labels = ['Males', 'Females']
             values = [males_data, females_data]
@@ -41,18 +37,19 @@ The annual unemployment rate stood at 20.5 percent, indicating that roughly for 
             plt.title('Employment rate Females vs Males')
             plt.show()
 
-            rural_data = selected_data.loc[selected_data['Category']
-                                           == 'Rural', 'Value'].values[0]
-            urban_data = selected_data.loc[selected_data['Category']
-                                           == 'Urban', 'Value'].values[0]
+            rural_data = selected_data.loc[selected_data['Category'] == 'Rural', 'Value'].values[0]
+            urban_data = selected_data.loc[selected_data['Category'] == 'Urban', 'Value'].values[0]
 
             custom_colors = ['grey', 'black']
 
-            plt.pie([rural_data, urban_data], labels=['Rural', 'Urban'],
-                    autopct='%1.1f%%', startangle=140, colors=custom_colors)
+            plt.pie([rural_data, urban_data], labels=['Rural', 'Urban'], autopct='%1.1f%%', startangle=140, colors=custom_colors)
             plt.title('Employment rate Rural vs Urban')
             plt.show()
 
     else:
         print('No data available.')
         return
+    
+    
+if __name__ == '__main__':
+    home()
