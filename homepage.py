@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import subprocess
+
+subprocess.run(["pip", "install", "plotly==5.3.1"])
 
 #We set the page title, icon and layout to wide to make the dashboard more appealing
 
