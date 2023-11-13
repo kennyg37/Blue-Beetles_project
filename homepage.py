@@ -54,21 +54,52 @@ The annual unemployment rate stood at 20.5 percent, indicating that roughly for 
         st.title('Data Vizualization')
 
         selected_row = 3
+        laborforce_row = 2
+        unemployment_row = 4
+        
+        ml_data = selected_data.iloc[laborforce_row, 2]
+        fl_data = selected_data.iloc[laborforce_row, 3]
         males_data = selected_data.iloc[selected_row, 2]
         females_data = selected_data.iloc[selected_row, 3]
 
         labels = ['Males', 'Females']
         values = [males_data, females_data]
+
+        lcolours = ['green', 'orange']
         
         pie1 = px.pie(selected_data, values=values, names=labels, title='Employment rate Females vs Males')
+
+#pie chart displaying the labour force distribution
+        pielaborforce = px.pie(selected_data, values=[ml_data, fl_data], names=labels, title='Labour Force Distribution', color_discrete_sequence=lcolours)
         st.plotly_chart(pie1, use_container_width=True)
+        st.plotly_chart(pielaborforce, use_container_width=True)
 
         rural_data = selected_data.iloc[selected_row, 5]
         urban_data = selected_data.iloc[selected_row, 4]
         custom_colors = ['grey', 'black']
 
+#pie chart displaying the employment rate in rural vs urban areas
         pie2 = px.pie(selected_data, values=[rural_data, urban_data], names=['Rural', 'Urban'], title='Employment rate Rural vs Urban', color_discrete_sequence=custom_colors)
         st.plotly_chart(pie2, use_container_width=True)
+
+#sunburst chart
+        sunburst_selected_row = 5
+        sunburst_data = selected_data.iloc[selected_row, 2:4]
+
+        sunburst = px.sunburst(names=sunburst_data.index, parents=['Labour Force'] * len(sunburst_data), values=sunburst_data.values, title='Employment Status Distribution')
+        st.plotly_chart(sunburst, use_container_width=True)
+
+#funnel chart
+
+        funnel_data = selected_data.iloc[selected_row, 6:8]
+
+        funnel = px.funnel(funnel_data, title='Employment rates depending on occupation', labels={'value': 'Number of Individuals'})
+        st.plotly_chart(funnel, use_container_width=True)
+
+
+
+
+
 
         
 #The about page displays the information about the dashboard and the data used  giving credit to all the involved parties
