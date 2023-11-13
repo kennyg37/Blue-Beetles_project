@@ -84,9 +84,13 @@ elif menu == 'About':
     """
     st.write(paragraph1)
     st.title('Blue Beatles')
+    st.image('pages/Images/ken.jpg', width=200)
+    st.caption('Ken Ganza')
+    st.image('pages/Images/Johnson.jpeg', width=200)
+    st.caption('Tuyishime Johnson') 
     paragraph2 = """ Blue Beatles is a team of two aspiring programmers Ken Ganza and Tuyishime Johnson.
     Both Ken and Johnson are students at the African Leadership University pursuing a degree in Software Engineering and they share
-    the love of programming and data science. In collaboration with NISR they designed this dashboard to help the public access the data"""
+    the love of programming and data science. In collaboration with NISR they designed this dashboard to help the public access the laborforce survey data and statistics"""
     st.write(paragraph2)
 
 else:
@@ -126,6 +130,10 @@ st.markdown(
     .plotly-graph-div, .plot-container {
         display: flex;
         justify-content: center;
+    }
+
+    img {
+    display: flex;
     }
 
     /* Add more styles as needed */

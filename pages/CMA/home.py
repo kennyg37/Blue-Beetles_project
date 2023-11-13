@@ -1,11 +1,17 @@
+# this file uses matplotlib becasuse plotly works in a erratic way on the terminal
+# it also uses numpy to help pandas format numbers automatically
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+#this is the home function and it displays the summary of the data that is the the detailed_view.py data
 
 def home():
     excel_file = 'excel_data.xlsx'
     selected_sheet_name = 'Table 1'
+
+#checks if the excel file is not empty, if it is empty it displays a message and if it is not it filters the data
 
     if excel_file is not None:
         all_sheets = pd.read_excel(excel_file, sheet_name=None, skiprows=[0])

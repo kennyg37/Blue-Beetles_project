@@ -1,4 +1,5 @@
 
+#the about function just displays the about page and the user can choose to read about NISR or Blue Beatles
 
 def about ():
     user_input = input("You're welcome to the about page, please select an option: \n 1. About NISR \n 2. About Blue Beatles \n 4. Exit \n")

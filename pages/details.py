@@ -41,10 +41,15 @@ if excel_file is not None:
            
         st.write(selected_data)
 
+#in case the user chooses the chart section charts are auto generated using filters
+
     elif selected_option == 'Chart':
         selected_chart = st.selectbox("Select a chart:", list(all_sheets.keys()), key='charts')
         selected_chart_data = all_sheets[selected_chart]
         selected_chart_data.rename(columns={'Unnamed: 0': 'Indicator'}, inplace=True)
+
+#if the sheet is list of tables no chart is generated because it's a table of contents
+
         if selected_chart == 'List Of Tables':
             selected_chart_data = selected_chart_data.fillna('')
             selected_chart_data= selected_chart_data.drop_duplicates()
