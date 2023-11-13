@@ -29,7 +29,7 @@ if menu == 'Home':
     st.title('Welcome to the NISR LFS Dashboard')
     st.write("<p style= 'font-style: italic;'>This dashboard showcases the 2022 Laborforce Survey carried out by Nisr</p>", unsafe_allow_html=True)
     st.write('You can find the data and visual summary on the data menu or more details following the link/page below')
-    #st.markdown('[Detailed data](details)')
+    st.markdown('[Detailed data](details)')
     st.title('Executive Summary')
     executive_summary = """Rwanda redesigned LFS from bi-annual to quarterly basis since February 2019 to provide estimates of labour market indicators and monitor labour market trends on a quarterly basis.
 The data collection on the size and characteristics of the labour force, employment, unemployment and other labour market characteristics of the population was carried out through four quarters of 2022, specifically in February, May, August and November. The survey was also designed to measure different forms of work, in particular, own-use production work and other components of labour underutilization including time-related underemployment and potential labour force in line with the international standards, adopted by the 19th International Conference of Labour Statisticians (ICLS) in 2013. All the key concepts used henceforth in this report (employment, unemployment, time related underemployment, labour underutilization, potential labour force, discouraged job seekers etc) are defined in annexe A of this report. The current report presents the results of the annual report of 2022 LFS obtained by combining all quarters of LFS in 2022 (February, May, August and November ).
