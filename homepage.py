@@ -12,10 +12,12 @@ selected_sheet_name = 'Table 1'
 
 # Loads the data from the excel and filters the data to remove empty rows and columns
 
-selected_data = pd.read_excel(excel_file, sheet_name=selected_sheet_name)
+selected_data = pd.read_excel(excel_file, sheet_name=selected_sheet_name, skiprows=[0])
 selected_data = selected_data.fillna('')
 selected_data= selected_data.drop_duplicates()
 selected_data= selected_data.reset_index(drop=True)
+selected_data.rename(columns={'Unnamed: 0': 'Indicator'}, inplace=True)
+
 
 
 
